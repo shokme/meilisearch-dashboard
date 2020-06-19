@@ -1,7 +1,18 @@
 module.exports = {
   theme: {
-    extend: {}
+    extend: {
+      colors: {
+        primary: {
+          '500': '#262431',
+        },
+        secondary: {
+          '500': '#ea2466',
+        },
+      },
+    },
   },
   variants: {},
-  plugins: []
+  plugins: [
+      require('@tailwindcss/ui')
+  ]
 }

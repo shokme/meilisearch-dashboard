@@ -7,8 +7,10 @@
     <link href="{{ mix('css/main.css') }}" rel="stylesheet">
     @livewireStyles
 </head>
-<body>
-    @yield('content')
+<body class="bg-gray-50">
+    <div class="mt-8 container mx-auto w-full">
+        @yield('content')
+    </div>
     <script src="{{ mix('js/app.js') }}"></script>
     @livewireScripts
 </body>
