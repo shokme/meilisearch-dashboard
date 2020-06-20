@@ -11,8 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::livewire('indexes');
+Route::livewire('/', 'home');
+Route::livewire('/dashboard', 'dashboard');
+Route::livewire('/dashboard/indexes/{uid}', 'dashboard.index');
