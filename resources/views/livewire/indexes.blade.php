@@ -9,7 +9,23 @@
       </div>
     </div>
     <div class="absolute" x-show="open">
-      <x-modal-centered-action :label="'Create Index'" />
+        <x-modal-centered-action :label="'Create Index'">
+        <div class="mt-3 relative rounded-md shadow-sm">
+            <input required wire:keydown.enter="create" wire:model="uid" class="form-input block w-full sm:text-sm sm:leading-5" placeholder="Index uid to create"/>
+        </div>
+        <div class="mt-3 relative rounded-md shadow-sm">
+            <input wire:keydown.enter="create" wire:model="pk" class="form-input block w-full sm:text-sm sm:leading-5" placeholder="Primary Key (optional)"/>
+        </div>
+            <x-slot name="button">
+                <div class="mt-5 sm:mt-6">
+            <span class="flex w-full rounded-md shadow-sm">
+                <button wire:click="create" @click="open = false;" type="button" class="inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-primary-500 text-base leading-6 font-medium text-white shadow-sm hover:bg-gray-800 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo transition ease-in-out duration-150 sm:text-sm sm:leading-5">
+                    Create
+                </button>
+            </span>
+        </div>
+            </x-slot>
+        </x-modal-centered-action>
     </div>
   </div>
 
