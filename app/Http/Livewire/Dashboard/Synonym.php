@@ -9,6 +9,9 @@ use MeiliSearch\Client;
 class Synonym extends Component
 {
     public string $index;
+    public $updateSynonyms;
+    public $alternative;
+    public $type = 'synonyms';
 
     /**
      * @return Client
@@ -18,19 +21,39 @@ class Synonym extends Component
         return Meili::getIndex($this->index);
     }
 
-    public function getSynonyms()
+    public function get()
     {
        return $this->index()->getSynonyms();
     }
 
-    public function updateSynonyms($synonyms = [])
+    public function update()
     {
-        $synonyms = ['foo' => ['bar', 'baz'], 'bar' => ['foo', 'baz'], 'baz'=> ['foo', 'bar']];
-        $status = $this->index()->updateSynonyms($synonyms);
+        if(!in_array($this->type, ['synonyms', 'oneway'])) {
+            // display message
+        }
+
+        if($this->type === 'synonyms') {
+            $synonyms = explode(',', $this->updateSynonyms);
+            if(count($synonyms) < 2) {
+                // validate
+            }
+
+            $data = collect($synonyms)->flatMap(function ($synonym) use ($synonyms) {
+                return [$synonym => array_values(array_diff($synonyms, [$synonym]))];
+            });
+        }
+
+        if($this->type === 'oneway') {
+            $data[$this->updateSynonyms] = explode(',', $this->alternative);
+        }
+
+        $data = array_merge($this->get(), $data);
+
+        $status = $this->index()->updateSynonyms($data);
         $this->waitUpdate($status);
     }
 
-    public function deleteSynonyms($synonyms)
+    public function delete($synonyms)
     {
         $all = $this->index()->getSynonyms();
         unset($all[$synonyms]);
@@ -51,7 +74,7 @@ class Synonym extends Component
 
     public function render()
     {
-        return view('livewire.dashboard.synonym', ['synonyms' => $this->getSynonyms()]);
+        return view('livewire.dashboard.synonym', ['synonyms' => $this->get()]);
     }
 
     private function waitUpdate($id)
