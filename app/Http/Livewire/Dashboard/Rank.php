@@ -38,7 +38,6 @@ class Rank extends Component
 
     public function update($list)
     {
-        dd($list);
         $status = $this->index()->updateRankingRules($list);
         $this->waitUpdate($status);
     }

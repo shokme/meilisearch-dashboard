@@ -47,7 +47,7 @@
                             <div x-data="{ open: false }" @click.away="open = false"
                                  class="relative inline-block text-left">
                                 <div>
-                                    <span class="rounded-md shadow-sm">
+                                    <span class="rounded-md shadow-sm" x-cloak>
                                         <button @click="open = !open" type="button"
                                                 class="inline-flex justify-center w-full rounded-md border border-gray-300 px-4 py-2 bg-white text-sm leading-5 font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800 transition ease-in-out duration-150"
                                                 id="options-menu" aria-haspopup="true" aria-expanded="true">
@@ -66,6 +66,7 @@
                                 </div>
 
                                 <div x-show="open"
+                                     x-cloak
                                      x-transition:enter="transition ease-out duration-100"
                                      x-transition:enter-start="transform opacity-0 scale-95"
                                      x-transition:enter-end="transform opacity-100 scale-100"
@@ -113,7 +114,7 @@
         <button @click="open = true" class="mt-2 p-2 w-full border bg-gray-50 justify-center rounded-sm">+ Add custom
             ranking attribute
         </button>
-        <div class="absolute" x-show="open">
+        <div class="absolute" x-show="open" x-cloak>
             <x-modal-centered-action>
                 <div class="relative rounded-md shadow-sm">
                     <div class="grid grid-cols-1 row-gap-6 col-gap-4 sm:grid-cols-6">
@@ -159,14 +160,10 @@
         for (let i = 0; i < children.length; i++) {
             let rule = children[i].children[1].innerText
             if(rule.includes('Descending')) {
-                rule = `desc(${rule.replace('/Descending/', '')})`;
-                console.log(rule);
-                rule = `desc(bar)`;
+                rule = `desc(${rule.replace(/\n/g, '').replace('Descending', ')')}`;
             }
             if(rule.includes('Ascending')) {
-                rule = `asc(${rule.replace('/\n/g', '').replace('/Ascending/', '')})`;
-                console.log(rule)
-                rule = `asc(bar)`;
+                rule = `asc(${rule.replace(/\n/g, '').replace('Ascending', ')')}`;
             }
             list = [...list, rule]
         }
