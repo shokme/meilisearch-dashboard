@@ -3,7 +3,7 @@
         <button @click="open = true" class="bg-secondary-500 font-semibold text-white rounded shadow px-2 py-2 text-sm">
             Add Synonyms
         </button>
-        <div class="absolute" x-show="open">
+        <div class="absolute" x-show="open" x-cloak>
             <x-modal-centered-action :label="'Create Synonym'">
                 <div class="mt-2">
                     <span class="block text-sm leading-5 font-medium text-gray-700">Type</span>

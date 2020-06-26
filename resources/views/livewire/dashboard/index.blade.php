@@ -7,7 +7,10 @@
         <livewire:dashboard.facet :uid="$index"></livewire:dashboard.facet>
         @break
         @case('synonyms')
-          <livewire:dashboard.synonym :uid="$index"></livewire:dashboard.synonym>
+        <livewire:dashboard.synonym :uid="$index"></livewire:dashboard.synonym>
+          @break
+        @case('ranks')
+        <livewire:dashboard.rank :uid="$index"></livewire:dashboard.rank>
           @break
       @endswitch
     </div>
