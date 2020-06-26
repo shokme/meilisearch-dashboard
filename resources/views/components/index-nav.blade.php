@@ -18,6 +18,9 @@
       <a class="px-6 py-3 block text-primary-300 hover:text-primary-500 hover:bg-gray-100 ease-in duration-100 @if(request()->query('s') === 'stopwords') bg-gray-100 border-l-4 border-secondary-500 @endif" href="?s=stopwords">
           <span class="@if(request()->query('s') === 'stopwords') -ml-2 @endif truncate">Stop-words</span>
       </a>
+    <a class="px-6 py-3 block text-primary-300 hover:text-primary-500 hover:bg-gray-100 ease-in duration-100 @if(request()->query('s') === 'ranks') bg-gray-100 border-l-4 border-secondary-500 @endif" href="?s=ranks">
+        <span class="@if(request()->query('s') === 'ranks') -ml-2 @endif truncate">Ranking</span>
+    </a>
     <a class="px-6 py-3 block text-primary-300 hover:text-primary-500 hover:bg-gray-100 ease-in duration-100 @if(request()->query('s') === 'facets') bg-gray-100 border-l-4 border-secondary-500 @endif" href="?s=facets">
       <span class="@if(request()->query('s') === 'facets') -ml-2 @endif truncate">Faceting</span>
     </a>

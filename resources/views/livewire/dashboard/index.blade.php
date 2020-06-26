@@ -9,6 +9,9 @@
                 @case('synonyms')
                 <livewire:dashboard.synonym :uid="$index"></livewire:dashboard.synonym>
                 @break
+                @case('ranks')
+                <livewire:dashboard.rank :uid="$index"></livewire:dashboard.rank>
+                @break
                 @case('stopwords')
                 <livewire:dashboard.stop-word :uid="$index"></livewire:dashboard.stop-word>
                 @break

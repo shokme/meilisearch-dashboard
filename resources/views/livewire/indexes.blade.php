@@ -11,10 +11,10 @@
     <div class="absolute" x-show="open">
         <x-modal-centered-action :label="'Create Index'">
         <div class="mt-3 relative rounded-md shadow-sm">
-            <input required wire:keydown.enter="create" wire:model="uid" class="form-input block w-full sm:text-sm sm:leading-5" placeholder="Index uid to create"/>
+            <input required wire:keydown.enter="create" @keydown.enter="open = false;" wire:model="uid" class="form-input block w-full sm:text-sm sm:leading-5" placeholder="Index uid to create"/>
         </div>
         <div class="mt-3 relative rounded-md shadow-sm">
-            <input wire:keydown.enter="create" wire:model="pk" class="form-input block w-full sm:text-sm sm:leading-5" placeholder="Primary Key (optional)"/>
+            <input wire:keydown.enter="create" @keydown.enter="open = false;" wire:model="pk" class="form-input block w-full sm:text-sm sm:leading-5" placeholder="Primary Key (optional)"/>
         </div>
             <x-slot name="button">
                 <div class="mt-5 sm:mt-6">
