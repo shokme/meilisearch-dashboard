@@ -28,10 +28,6 @@ class Synonym extends Component
 
     public function update()
     {
-        if(!in_array($this->type, ['synonyms', 'oneway'])) {
-            // display message
-        }
-
         if($this->type === 'synonyms') {
             $synonyms = explode(',', $this->updateSynonyms);
             if(count($synonyms) < 2) {
@@ -40,7 +36,7 @@ class Synonym extends Component
 
             $data = collect($synonyms)->flatMap(function ($synonym) use ($synonyms) {
                 return [$synonym => array_values(array_diff($synonyms, [$synonym]))];
-            });
+            })->all();
         }
 
         if($this->type === 'oneway') {
