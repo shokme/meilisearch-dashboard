@@ -11,6 +11,6 @@
 |
 */
 
-Route::livewire('/', 'home');
+Route::livewire('/', 'dashboard');
 Route::livewire('/dashboard', 'dashboard');
 Route::livewire('/dashboard/indexes/{uid}', 'dashboard.index');

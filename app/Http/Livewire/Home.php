@@ -17,8 +17,8 @@ class Home extends Component
     public function connect()
     {
         DB::table('instances')->updateOrInsert(['host' => $this->host, 'key' => $this->key]);
-        Config::set('meilisearch.host', $this->host);
-        Config::set('meilisearch.key', $this->key);
+        config(['meilisearch.host' => $this->host]);
+        config(['meilisearch.key' => $this->key]);
 
         return $this->redirect('dashboard');
     }

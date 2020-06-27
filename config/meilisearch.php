@@ -1,6 +1,6 @@
 <?php
 
 return [
-    'host' => 'http://localhost:7700',
-    'key' => '',
+    'host' => env('MEILISEARCH_HOST'),
+    'key' => env('MEILISEARCH_KEY'),
 ];
