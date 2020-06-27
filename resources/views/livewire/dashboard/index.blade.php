@@ -21,6 +21,9 @@
                 @case('searchable')
                 <livewire:dashboard.searchable :uid="$index"></livewire:dashboard.searchable>
                 @break
+                @case('display')
+                <livewire:dashboard.display :uid="$index"></livewire:dashboard.display>
+                @break
             @endswitch
         </div>
     </div>
