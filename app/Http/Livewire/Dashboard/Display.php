@@ -9,7 +9,7 @@ use MeiliSearch\Client;
 class Display extends Component
 {
     public string $index;
-    public string $attribute;
+    public string $attribute = '';
 
     /**
      * @return Client
@@ -17,6 +17,17 @@ class Display extends Component
     private function index()
     {
         return Meili::getIndex($this->index);
+    }
+
+    public function acceptFields()
+    {
+        return $this->index()->getAcceptNewFields();
+    }
+
+    public function toggleFields()
+    {
+        $status = $this->index()->updateAcceptNewFields(!$this->acceptFields());
+        $this->waitUpdate($status);
     }
 
     public function get()
@@ -53,7 +64,7 @@ class Display extends Component
 
     public function render()
     {
-        return view('livewire.dashboard.display', ['attributes' => $this->get()]);
+        return view('livewire.dashboard.display', ['attributes' => $this->get(), 'acceptFields' => $this->acceptFields()]);
     }
 
     private function waitUpdate($id)
