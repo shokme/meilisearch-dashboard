@@ -4,12 +4,18 @@ namespace App\Http\Livewire;
 
 use App\Support\Facades\Meili;
 use Livewire\Component;
+use MeiliSearch\Client;
 use MeiliSearch\Exceptions\HTTPRequestException;
 
 class Indexes extends Component
 {
     public string $uid = '';
     public string $pk = 'id';
+
+    public function stats()
+    {
+        return Meili::stats()['indexes'];
+    }
 
     public function create()
     {
@@ -37,6 +43,6 @@ class Indexes extends Component
             return array_merge($index, $stats);
         })->all();
 
-        return view('livewire.indexes', ['indexes' => $indexes]);
+        return view('livewire.indexes', ['indexes' => $indexes, 'stats' => $this->stats(), 'sys' => Meili::prettySysInfo()]);
     }
 }
