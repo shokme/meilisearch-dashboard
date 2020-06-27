@@ -18,6 +18,9 @@
                 @case('distinct')
                 <livewire:dashboard.distinct :uid="$index"></livewire:dashboard.distinct>
                 @break
+                @case('searchable')
+                <livewire:dashboard.searchable :uid="$index"></livewire:dashboard.searchable>
+                @break
             @endswitch
         </div>
     </div>
