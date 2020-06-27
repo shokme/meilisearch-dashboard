@@ -23,9 +23,10 @@ class StopWord extends Component
        return $this->index()->getStopWords();
     }
 
-    public function update()
+    public function update($word)
     {
-        $status = $this->index()->updateStopWords();
+        $words = [...$this->get(), $word];
+        $status = $this->index()->updateStopWords($words);
         $this->waitUpdate($status);
     }
 
@@ -33,7 +34,13 @@ class StopWord extends Component
     {
         $all = $this->get();
         unset($all[$word]);
-        $status = !count($all) ? $this->index()->resetStopWords() : $this->index()->updateStopWords($all);
+        $status = $this->index()->updateStopWords(array_values($all));
+        $this->waitUpdate($status);
+    }
+
+    public function resetStopWords()
+    {
+        $status = $this->index()->resetStopWords();
         $this->waitUpdate($status);
     }
 
