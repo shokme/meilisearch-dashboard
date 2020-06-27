@@ -40,5 +40,9 @@
            href="?s=searchable">
             <span class="@if(request()->query('s') === 'searchable') -ml-2 @endif truncate">Searchable</span>
         </a>
+        <a class="px-6 py-3 block text-primary-300 hover:text-primary-500 hover:bg-gray-100 ease-in duration-100 @if(request()->query('s') === 'display') bg-gray-100 border-l-4 border-secondary-500 @endif"
+           href="?s=display">
+            <span class="@if(request()->query('s') === 'display') -ml-2 @endif truncate">Display</span>
+        </a>
     </div>
 </div>
