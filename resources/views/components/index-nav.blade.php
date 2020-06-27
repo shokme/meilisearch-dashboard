@@ -32,5 +32,9 @@
            href="?s=ranks">
             <span class="@if(request()->query('s') === 'ranks') -ml-2 @endif truncate">Ranking</span>
         </a>
+        <a class="px-6 py-3 block text-primary-300 hover:text-primary-500 hover:bg-gray-100 ease-in duration-100 @if(request()->query('s') === 'distinct') bg-gray-100 border-l-4 border-secondary-500 @endif"
+           href="?s=distinct">
+            <span class="@if(request()->query('s') === 'distinct') -ml-2 @endif truncate">Distinct</span>
+        </a>
     </div>
 </div>
