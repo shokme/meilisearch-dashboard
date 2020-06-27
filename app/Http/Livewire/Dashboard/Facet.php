@@ -10,6 +10,7 @@ use MeiliSearch\Exceptions\HTTPRequestException;
 class Facet extends Component
 {
     public string $index;
+    public string $attribute = '';
 
     /**
      * @return Client
@@ -19,22 +20,34 @@ class Facet extends Component
         return Meili::getIndex($this->index);
     }
 
-    public function getAttributes()
+    public function get()
     {
         return $this->index()->getAttributesForFaceting();
     }
 
-    public function addAttribute($attributes = [])
+    public function add()
     {
-        // Get all attributes
-        // Merge New Attributes
-        // Diff deleted attributes
-        try {
-            $status = $this->index()->updateAttributesForFaceting($attributes);
-            $this->waitUpdate($status);
-        } catch (HTTPRequestException $exception) {
-            dd($exception);
-        }
+        $this->validate(['attribute' => 'required']);
+
+        $attributes = [...$this->get(), $this->attribute];
+        $status = $this->index()->updateAttributesForFaceting($attributes);
+        $this->waitUpdate($status);
+        $this->reset('attribute');
+    }
+
+    public function delete($id)
+    {
+        $attributes = $this->get();
+        unset($attributes[$id]);
+
+        $status = $this->index()->updateAttributesForFaceting(array_values($attributes));
+        $this->waitUpdate($status);
+    }
+
+    public function resetAttributes()
+    {
+        $status = $this->index()->resetAttributesForFaceting();
+        $this->waitUpdate($status);
     }
 
     public function mount($uid)
@@ -44,7 +57,7 @@ class Facet extends Component
 
     public function render()
     {
-        return view('livewire.dashboard.facet', ['facets' => $this->getAttributes()]);
+        return view('livewire.dashboard.facet', ['facets' => $this->get()]);
     }
 
     private function waitUpdate($id)
