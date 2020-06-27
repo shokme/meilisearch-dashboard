@@ -10,7 +10,6 @@ use MeiliSearch\Exceptions\HTTPRequestException;
 class Distinct extends Component
 {
     public string $index;
-    public string $distinct = '';
 
     /**
      * @return Client
@@ -25,7 +24,7 @@ class Distinct extends Component
         return $this->index()->getDistinctAttribute();
     }
 
-    public function add($attribute)
+    public function update($attribute)
     {
         $status = $this->index()->updateDistinctAttribute($attribute);
         $this->waitUpdate($status);
@@ -38,7 +37,7 @@ class Distinct extends Component
 
     public function render()
     {
-        return view('livewire.dashboard.distinct', ['facets' => $this->get()]);
+        return view('livewire.dashboard.distinct', ['attribute' => $this->get()]);
     }
 
     private function waitUpdate($id)
