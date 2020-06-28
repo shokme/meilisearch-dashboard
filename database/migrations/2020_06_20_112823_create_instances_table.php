@@ -17,6 +17,7 @@ class CreateInstancesTable extends Migration
             $table->id();
             $table->string('host');
             $table->string('key')->nullable();
+            $table->boolean('active');
             $table->timestamps();
         });
     }

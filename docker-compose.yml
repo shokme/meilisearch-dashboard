@@ -15,3 +15,9 @@ services:
       - 7700:7700
     volumes:
       - ./data.ms:/data.ms
+  meilisearch2:
+    image: getmeili/meilisearch:v0.11.0
+    ports:
+      - 7800:7700
+    volumes:
+      - ./data2.ms:/data.ms
