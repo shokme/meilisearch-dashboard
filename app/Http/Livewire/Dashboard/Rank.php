@@ -3,12 +3,12 @@
 namespace App\Http\Livewire\Dashboard;
 
 use App\Support\MeilisearchTrait;
-use Illuminate\Support\Str;
+use App\Support\UpdateOrderTrait;
 use Livewire\Component;
 
 class Rank extends Component
 {
-    use MeilisearchTrait;
+    use MeilisearchTrait, UpdateOrderTrait;
 
     public string $index;
     public string $word = '';
@@ -51,25 +51,5 @@ class Rank extends Component
     public function render()
     {
         return view('livewire.dashboard.rank', ['rules' => $this->get()]);
-    }
-
-    public function updateOrder($rule, $order)
-    {
-        $rules = collect($this->get())->map(function ($item) use ($rule, $order) {
-            if($item !== $rule) {
-                return $item;
-            }
-
-            if(Str::contains($rule, $order)) {
-                return $item;
-            } else {
-                $attribute = Str::between($rule, '(', ')');
-                $orderBy = Str::before($rule, $attribute);
-                return str_replace($orderBy, $order.'(', $rule);
-            }
-        })->all();
-
-        $status = $this->index()->updateRankingRules($rules);
-        $this->waitUpdate($status);
     }
 }
