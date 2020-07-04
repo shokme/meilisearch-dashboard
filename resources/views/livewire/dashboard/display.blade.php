@@ -16,7 +16,7 @@
         <h3 class="font-semibold underline">Displayed attributes</h3>
         <p>Attributes of the records that will be sent within the answer to a search. <a href="#">Learn more</a></p>
         <p>Default value: ['*']</p>
-        <button wire:click="resetAttributes"
+        <button wire:click="restore('DisplayedAttributes')"
                 class="mb-2 p-2 bg-primary-500 text-white border shadow rounded hover:bg-primary-300">Reset
         </button>
         <div x-data="{ open: false }">
