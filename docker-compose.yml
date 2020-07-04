@@ -12,7 +12,7 @@ services:
     - ${APP_PORT}:80
     volumes:
     - ./:/var/www
-    - ./docker/nginx.conf:/etc/nginx/nginx.conf
+    - ./docker/apache.conf:/etc/nginx/apache.conf
     networks:
       - meilisearch-dashboard-network
 
