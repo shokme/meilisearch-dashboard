@@ -2,7 +2,7 @@
     <h3 class="font-semibold underline">Ranking</h3>
     <p>Controls the way results are sorted. <a href="#">Learn more</a></p>
     <p>Default value: ["typo", "words", "proximity", "attribute", "wordsPosition", "exactness"]</p>
-    <button wire:click="resetRankingRules"
+    <button wire:click="restore('RankingRules')"
             class="mb-2 p-2 bg-primary-500 text-white border shadow rounded hover:bg-primary-300">Reset
     </button>
 

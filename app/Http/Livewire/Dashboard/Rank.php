@@ -2,25 +2,17 @@
 
 namespace App\Http\Livewire\Dashboard;
 
-use App\Support\Facades\Meili;
+use App\Support\MeilisearchTrait;
 use Illuminate\Support\Str;
 use Livewire\Component;
-use MeiliSearch\Client;
-use MeiliSearch\Exceptions\HTTPRequestException;
 
 class Rank extends Component
 {
+    use MeilisearchTrait;
+
     public string $index;
     public string $word = '';
     public string $order = 'asc';
-
-    /**
-     * @return Client
-     */
-    private function index()
-    {
-        return Meili::getIndex($this->index);
-    }
 
     public function get()
     {
@@ -43,6 +35,24 @@ class Rank extends Component
         $this->waitUpdate($status);
     }
 
+    public function delete($id)
+    {
+        $all = $this->get();
+        unset($all[$id]);
+        $status = $this->index()->updateRankingRules(array_values($all));
+        $this->waitUpdate($status);
+    }
+
+    public function mount($uid)
+    {
+        $this->index = $uid;
+    }
+
+    public function render()
+    {
+        return view('livewire.dashboard.rank', ['rules' => $this->get()]);
+    }
+
     public function updateOrder($rule, $order)
     {
         $rules = collect($this->get())->map(function ($item) use ($rule, $order) {
@@ -61,37 +71,5 @@ class Rank extends Component
 
         $status = $this->index()->updateRankingRules($rules);
         $this->waitUpdate($status);
-    }
-
-    public function delete($id)
-    {
-        $all = $this->get();
-        unset($all[$id]);
-        $status = $this->index()->updateRankingRules(array_values($all));
-        $this->waitUpdate($status);
-    }
-
-    public function resetRankingRules()
-    {
-        $status = $this->index()->resetRankingRules();
-        $this->waitUpdate($status);
-    }
-
-    public function mount($uid)
-    {
-        $this->index = $uid;
-    }
-
-    public function render()
-    {
-        return view('livewire.dashboard.rank', ['rules' => $this->get()]);
-    }
-
-    private function waitUpdate($id)
-    {
-        while($this->index()->getUpdateStatus($id['updateId'])['status'] === 'enqueued') {
-            usleep(100 * 1000);
-            continue;
-        }
     }
 }
