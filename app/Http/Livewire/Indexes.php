@@ -12,6 +12,8 @@ class Indexes extends Component
     public string $uid = '';
     public string $pk = 'id';
 
+    protected $listeners = ['instanceSwitched' => 'render'];
+
     public function stats()
     {
         return Meili::stats()['indexes'];

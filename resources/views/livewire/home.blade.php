@@ -3,10 +3,10 @@
     <form wire:submit.prevent="connect">
       <div class="rounded-md shadow-sm">
         <div>
-          <input wire:model="host" aria-label="Host" name="host" type="text" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:shadow-outline-blue focus:border-blue-300 focus:z-10 sm:text-sm sm:leading-5" placeholder="Host" />
+          <input wire:model.lazy="host" aria-label="Host" name="host" type="text" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:shadow-outline-blue focus:border-blue-300 focus:z-10 sm:text-sm sm:leading-5" placeholder="Host" />
         </div>
         <div class="mt-2">
-          <input wire:model="key" aria-label="Key (optional)" name="key" type="text" class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:shadow-outline-blue focus:border-blue-300 focus:z-10 sm:text-sm sm:leading-5" placeholder="Key (optional)" />
+          <input wire:model.lazy="key" aria-label="Key (optional)" name="key" type="text" class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:shadow-outline-blue focus:border-blue-300 focus:z-10 sm:text-sm sm:leading-5" placeholder="Key (optional)" />
         </div>
       </div>
 
