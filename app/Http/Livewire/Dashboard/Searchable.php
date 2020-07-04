@@ -2,24 +2,16 @@
 
 namespace App\Http\Livewire\Dashboard;
 
-use App\Support\Facades\Meili;
+use App\Support\MeilisearchTrait;
 use Illuminate\Support\Str;
 use Livewire\Component;
-use MeiliSearch\Client;
-use MeiliSearch\Exceptions\HTTPRequestException;
 
 class Searchable extends Component
 {
+    use MeilisearchTrait;
+
     public string $index;
     public string $attribute = '';
-
-    /**
-     * @return Client
-     */
-    private function index()
-    {
-        return Meili::getIndex($this->index);
-    }
 
     public function get()
     {
@@ -42,6 +34,24 @@ class Searchable extends Component
         $this->waitUpdate($status);
     }
 
+    public function delete($id)
+    {
+        $all = $this->get();
+        unset($all[$id]);
+        $status = $this->index()->updateSearchableAttributes(array_values($all));
+        $this->waitUpdate($status);
+    }
+
+    public function mount($uid)
+    {
+        $this->index = $uid;
+    }
+
+    public function render()
+    {
+        return view('livewire.dashboard.searchable', ['attributes' => $this->get()]);
+    }
+
     public function updateOrder($rule, $order)
     {
         $rules = collect($this->get())->map(function ($item) use ($rule, $order) {
@@ -60,37 +70,5 @@ class Searchable extends Component
 
         $status = $this->index()->updateSearchableAttributes($rules);
         $this->waitUpdate($status);
-    }
-
-    public function delete($id)
-    {
-        $all = $this->get();
-        unset($all[$id]);
-        $status = $this->index()->updateSearchableAttributes(array_values($all));
-        $this->waitUpdate($status);
-    }
-
-    public function resetSearchable()
-    {
-        $status = $this->index()->resetSearchableAttributes();
-        $this->waitUpdate($status);
-    }
-
-    public function mount($uid)
-    {
-        $this->index = $uid;
-    }
-
-    public function render()
-    {
-        return view('livewire.dashboard.searchable', ['attributes' => $this->get()]);
-    }
-
-    private function waitUpdate($id)
-    {
-        while($this->index()->getUpdateStatus($id['updateId'])['status'] === 'enqueued') {
-            usleep(100 * 1000);
-            continue;
-        }
     }
 }
