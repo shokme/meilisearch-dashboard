@@ -32,6 +32,7 @@ class Searchable extends Component
         $list = [$this->attribute, ...$list];
 
         $status = $this->index()->updateSearchableAttributes($list);
+        $this->reset('attribute');
         $this->waitUpdate($status);
     }
 

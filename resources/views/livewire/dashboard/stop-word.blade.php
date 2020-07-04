@@ -31,7 +31,7 @@
                     @endforeach
                 </div>
             @endif
-            <input x-ref="words" @keydown.enter="addWord(@this, event.target.value)"
+            <input x-ref="words" @keydown.enter="addWord(@this, event.target.value); event.target.value = ''"
                    class="ml-1 flex bg-transparent text-primary-500 min-w-4" autocomplete="off" type="text"/>
         </div>
     </div>

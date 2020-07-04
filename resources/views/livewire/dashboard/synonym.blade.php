@@ -28,7 +28,7 @@
                             <label for="synonyms" class="ml-3">
                                 <span class="block text-sm leading-5 font-medium text-gray-700">Synonyms</span>
                             </label>
-                            <input required wire:keydown.enter="update" wire:model="updateSynonyms"
+                            <input required @keydown.enter="open = false;" wire:keydown.enter="update" wire:model="updateSynonyms"
                                    class="mt-1 form-input block w-full sm:text-sm sm:leading-5"
                                    placeholder="List of synonyms (separated by ',')"/>
                         </div>
@@ -37,7 +37,7 @@
                             <label for="synonyms" class="ml-3">
                                 <span class="block text-sm leading-5 font-medium text-gray-700">Search term</span>
                             </label>
-                            <input required wire:keydown.enter="update" wire:model="updateSynonyms"
+                            <input required @keydown.enter="open = false;" wire:keydown.enter="update" wire:model="updateSynonyms"
                                    class="mt-1 form-input block w-full sm:text-sm sm:leading-5"
                                    placeholder="Expression"/>
                         </div>
@@ -46,7 +46,7 @@
                             <label for="synonyms" class="ml-3">
                                 <span class="block text-sm leading-5 font-medium text-gray-700">Alternative</span>
                             </label>
-                            <input required wire:keydown.enter="update" wire:model="alternative"
+                            <input required  @keydown.enter="open = false;" wire:keydown.enter="update" wire:model="alternative"
                                    class="mt-1 form-input block w-full sm:text-sm sm:leading-5"
                                    placeholder="List of synonyms (separated by ',')"/>
                         </div>

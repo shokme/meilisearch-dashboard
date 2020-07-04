@@ -31,7 +31,7 @@ class Synonym extends Component
         if($this->type === 'synonyms') {
             $synonyms = explode(',', $this->updateSynonyms);
             if(count($synonyms) < 2) {
-                // validate
+                // TODO: validate
             }
 
             $data = collect($synonyms)->flatMap(function ($synonym) use ($synonyms) {
@@ -46,6 +46,7 @@ class Synonym extends Component
         $data = array_merge($this->get(), $data);
 
         $status = $this->index()->updateSynonyms($data);
+        $this->reset('updateSynonyms', 'alternative');
         $this->waitUpdate($status);
     }
 

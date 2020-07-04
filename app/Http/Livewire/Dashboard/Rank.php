@@ -33,6 +33,7 @@ class Rank extends Component
         $list = ["{$this->order}({$this->word})", ...$list];
 
         $status = $this->index()->updateRankingRules($list);
+        $this->reset('word');
         $this->waitUpdate($status);
     }
 
