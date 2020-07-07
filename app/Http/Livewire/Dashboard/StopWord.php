@@ -2,21 +2,14 @@
 
 namespace App\Http\Livewire\Dashboard;
 
-use App\Support\Facades\Meili;
+use App\Support\MeilisearchTrait;
 use Livewire\Component;
-use MeiliSearch\Client;
 
 class StopWord extends Component
 {
-    public string $index;
+    use MeilisearchTrait;
 
-    /**
-     * @return Client
-     */
-    private function index()
-    {
-        return Meili::getIndex($this->index);
-    }
+    public string $index;
 
     public function get()
     {
@@ -38,12 +31,6 @@ class StopWord extends Component
         $this->waitUpdate($status);
     }
 
-    public function resetStopWords()
-    {
-        $status = $this->index()->resetStopWords();
-        $this->waitUpdate($status);
-    }
-
     public function mount($uid)
     {
         $this->index = $uid;
@@ -52,13 +39,5 @@ class StopWord extends Component
     public function render()
     {
         return view('livewire.dashboard.stop-word', ['stopwords' => $this->get()]);
-    }
-
-    private function waitUpdate($id)
-    {
-        while($this->index()->getUpdateStatus($id['updateId'])['status'] === 'enqueued') {
-            usleep(100 * 1000);
-            continue;
-        }
     }
 }

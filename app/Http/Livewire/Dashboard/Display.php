@@ -2,33 +2,15 @@
 
 namespace App\Http\Livewire\Dashboard;
 
-use App\Support\Facades\Meili;
+use App\Support\MeilisearchTrait;
 use Livewire\Component;
-use MeiliSearch\Client;
 
 class Display extends Component
 {
+    use MeilisearchTrait;
+
     public string $index;
     public string $attribute = '';
-
-    /**
-     * @return Client
-     */
-    private function index()
-    {
-        return Meili::getIndex($this->index);
-    }
-
-    public function acceptFields()
-    {
-        return $this->index()->getAcceptNewFields();
-    }
-
-    public function toggleFields()
-    {
-        $status = $this->index()->updateAcceptNewFields(!$this->acceptFields());
-        $this->waitUpdate($status);
-    }
 
     public function get()
     {
@@ -51,9 +33,14 @@ class Display extends Component
         $this->waitUpdate($status);
     }
 
-    public function resetAttributes()
+    public function acceptFields()
     {
-        $status = $this->index()->resetDisplayedAttributes();
+        return $this->index()->getAcceptNewFields();
+    }
+
+    public function toggleFields()
+    {
+        $status = $this->index()->updateAcceptNewFields(!$this->acceptFields());
         $this->waitUpdate($status);
     }
 
@@ -65,13 +52,5 @@ class Display extends Component
     public function render()
     {
         return view('livewire.dashboard.display', ['attributes' => $this->get(), 'acceptFields' => $this->acceptFields()]);
-    }
-
-    private function waitUpdate($id)
-    {
-        while($this->index()->getUpdateStatus($id['updateId'])['status'] === 'enqueued') {
-            usleep(100 * 1000);
-            continue;
-        }
     }
 }

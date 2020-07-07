@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\ServiceProvider;
 use MeiliSearch\Client;
 
@@ -14,8 +15,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind('meili', function () {
-            return new Client(config('meilisearch.host'), config('meilisearch.key'));
+        $this->app->singleton('meili', function () {
+            $db = DB::table('instances')->select('host', 'key')->where('active', 1)->first();
+            return new Client($db->host, $db->key);
         });
     }
 

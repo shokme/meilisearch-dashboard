@@ -1,7 +1,7 @@
 <div x-data="{ focus: false, words: [] }">
     <h3 class="font-semibold underline">Optional words</h3>
     <p>List of words that should be considered as optional. <a href="#">Learn more</a></p>
-    <button wire:click="resetStopWords"
+    <button wire:click="restore('StopWords')"
             class="mb-2 p-2 bg-primary-500 text-white border shadow rounded hover:bg-primary-300">Reset
     </button>
     <div class="mt-2 box-border border-0">
@@ -31,7 +31,7 @@
                     @endforeach
                 </div>
             @endif
-            <input x-ref="words" @keydown.enter="addWord(@this, event.target.value)"
+            <input x-ref="words" @keydown.enter="addWord(@this, event.target.value); event.target.value = ''"
                    class="ml-1 flex bg-transparent text-primary-500 min-w-4" autocomplete="off" type="text"/>
         </div>
     </div>

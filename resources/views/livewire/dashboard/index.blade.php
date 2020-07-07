@@ -3,16 +3,16 @@
         <x-index-nav/>
         <div class="w-2/3 border border-gray-100 border-l-0 px-4 py-4">
             @switch(request()->query('s'))
-                @case('synonyms')
+                @case('synonym')
                 <livewire:dashboard.synonym :uid="$index"></livewire:dashboard.synonym>
                 @break
-                @case('ranks')
+                @case('ranking')
                 <livewire:dashboard.rank :uid="$index"></livewire:dashboard.rank>
                 @break
                 @case('stopwords')
                 <livewire:dashboard.stop-word :uid="$index"></livewire:dashboard.stop-word>
                 @break
-                @case('facets')
+                @case('faceting')
                 <livewire:dashboard.facet :uid="$index"></livewire:dashboard.facet>
                 @break
                 @case('distinct')

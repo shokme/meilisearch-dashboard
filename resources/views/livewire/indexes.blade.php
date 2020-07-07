@@ -1,4 +1,5 @@
 <div>
+    <livewire:switch-instance/>
     <div class="mx-w-screen-xl mx-auto py-6 px-8 flex items-center justify-between" x-data="{ open: false }">
         <h2 class="font-extrabold tracking-tight text-primary-500 text-2xl leading-10">
             Indexes

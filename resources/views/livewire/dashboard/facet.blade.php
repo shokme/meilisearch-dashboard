@@ -2,7 +2,7 @@
     <h3 class="font-semibold underline">Attributes for faceting</h3>
     <p>List of attributes to use for faceting. <a href="#">Learn more</a></p>
     <p>Default value: []</p>
-    <button wire:click="resetAttributes"
+    <button wire:click="restore('AttributesForFaceting')"
             class="mb-2 p-2 bg-primary-500 text-white border shadow rounded hover:bg-primary-300">Reset
     </button>
     <div class="mt-4 p-4 text-gray-700 bg-gray-100 border-t-4 border-primary-500 rounded-sm">
