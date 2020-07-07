@@ -9,7 +9,7 @@ class SwitchInstance extends Component
 {
     public function get()
     {
-        return DB::table('instances')->select('host')->get();
+        return DB::table('instances')->select('host', 'active')->orderBy('active', 'desc')->get();
     }
 
     public function toggle($host)

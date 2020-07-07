@@ -1,4 +1,5 @@
 <div>
+    <div class="my-2 p-2 text-white bg-blue-500 rounded shadow">This page is working in progress</div>
     <livewire:switch-instance/>
     <div class="mx-w-screen-xl mx-auto py-6 px-8 flex items-center justify-between" x-data="{ open: false }">
         <h2 class="font-extrabold tracking-tight text-primary-500 text-2xl leading-10">
@@ -114,20 +115,20 @@
             </div>
         </div>
     </div>
-    <div>
-        <div class="mx-w-screen-xl mx-auto pt-8 px-8 flex items-center justify-between">
-            <h2 class="font-extrabold tracking-tight text-primary-500 text-2xl leading-10">
-                System info
-            </h2>
-        </div>
-    </div>
-    <div class="flex flex-col px-8">
-        <div class="overflow-x-auto -mx-2 px-2">
-            <div class="align-middle inline-block min-w-full overflow-hidden">
-                <div>
-                    @dump($sys)
-                </div>
-            </div>
-        </div>
-    </div>
+{{--    <div>--}}
+{{--        <div class="mx-w-screen-xl mx-auto pt-8 px-8 flex items-center justify-between">--}}
+{{--            <h2 class="font-extrabold tracking-tight text-primary-500 text-2xl leading-10">--}}
+{{--                System info--}}
+{{--            </h2>--}}
+{{--        </div>--}}
+{{--    </div>--}}
+{{--    <div class="flex flex-col px-8">--}}
+{{--        <div class="overflow-x-auto -mx-2 px-2">--}}
+{{--            <div class="align-middle inline-block min-w-full overflow-hidden">--}}
+{{--                <div>--}}
+{{--                    @dump($sys)--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </div>--}}
 </div>
