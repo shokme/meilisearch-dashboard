@@ -33,10 +33,9 @@ ADD docker/php.ini ${PHP_INI_DIR}/conf.d/99-overrides.ini
 WORKDIR /app
 COPY --from=vendor /app /app
 COPY --from=frontend /app/public /app/public
-RUN chgrp -R www-data /app/storage /app/bootstrap/cache && chmod -R ug+rwx /app/storage /app/bootstrap/cache
+RUN touch /app/database/database.sqlite
+RUN chgrp -R www-data /app/storage /app/bootstrap/cache /app/database/database.sqlite && chmod -R ug+rwx /app/storage /app/bootstrap/cache /app/database/database.sqlite
 
 RUN cp .env.example .env
-
-RUN touch /app/database/database.sqlite
 RUN ["php", "artisan", "key:generate"]
 RUN ["php", "artisan", "migrate"]
