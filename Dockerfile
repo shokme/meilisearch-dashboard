@@ -37,9 +37,6 @@ RUN chgrp -R www-data /app/storage /app/bootstrap/cache && chmod -R ug+rwx /app/
 
 RUN cp .env.example .env
 
-ADD docker/start.sh /
-RUN chmod +x /start.sh
-
 RUN touch /app/database/database.sqlite
 RUN ["php", "artisan", "key:generate"]
 RUN ["php", "artisan", "migrate"]
