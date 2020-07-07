@@ -16,18 +16,20 @@
 
 <p align="center">⚡ Lightning Fast, Ultra Relevant, and Typo-Tolerant Search Engine MeiliSearch driver for Laravel Scout</p>
 
-**MeiliSearch Dashboard** is a minimalist user interface to help you to configure your indexes. **MeiliSearch** is a powerful, fast, open-source, easy to use and deploy search engine. Both searching and indexing are highly customizable. Features such as typo-tolerance, filters, and synonyms are provided out-of-the-box.
+**MeiliSearch Dashboard** is a minimalist user interface to help you to configure your indexes.
+
+**MeiliSearch** is a powerful, fast, open-source, easy to use and deploy search engine. Both searching and indexing are highly customizable. Features such as typo-tolerance, filters, and synonyms are provided out-of-the-box.
 
 ## Table of Contents
 
 - [Disclaimer](#disclaimer)
-- [Installation](#installation)
-- [Additional notes](#additional-notes)
+- [Installation Docker](#installation-docker)
+- [Installation Docker Compose](#installation-docker-compose)
 
 ### Disclaimer
 
 The dashboard is in an early stage.
-I have implemented the base functionality of MeiliSearch, you might encounter some bugs, bad code design. A lot of improvement has to be made!
+I have implemented the base functionalities of MeiliSearch, you might encounter some bugs, bad code design. A lot of improvement has to be made!
 Do not hesitate to help me to improve the dashboard :)
 
 The dashboard is build with:
@@ -36,15 +38,17 @@ The dashboard is build with:
 - [Laravel](https://laravel.com)
 - [Livewire](https://laravel-livewire.com/)
 
-## Installation
-
-### Require
-
-- Meilisearch `v0.11.x`
+## Installation Docker
 
 ### Run Dashboard with Docker
 
-Working progress...
+```bash
+$ docker network create meilisearch-network
+```
+
+```bash
+$ docker run -it --rm -p 8000:80 --network=meilisearch-network shokme/meilisearch-dashboard:alpha
+```
 
 ### Run MeiliSearch
 
@@ -52,16 +56,35 @@ There are many easy ways to [download and run a MeiliSearch instance](https://do
 
 For example, if you use Docker:
 ```bash
-$ docker run -it --rm -p 7700:7700 getmeili/meilisearch:latest ./meilisearch --master-key=masterKey
+$ docker run -it --rm -p 7700:7700 --network=meilisearch-network getmeili/meilisearch:latest ./meilisearch --master-key=masterKey
 ```
 
 NB: you can also download MeiliSearch from **Homebrew** or **APT**.
 
-## Additional notes
+### Connect the dashboard to an instance
 
-You can use more advance function by reading the documentation of [MeiliSearch PHP Client](https://github.com/meilisearch/meilisearch-php)
+```bash
+docker ps
+```
+Copy the **CONTAINER ID** of getmeili/meilisearch.
+On the dashboard homepage in the `host` field insert the container id followed by the port. Example: e194fad4790f:8000
 
-This package is a custom engine of [Laravel Scout](https://laravel.com/docs/master/scout)
+## Installation Docker Compose
+
+```
+version: '3'
+services:
+    dashboard:
+        image: shokme/meilisearch-dashboard:alpha
+        ports:
+        - 8000:80
+    meilisearch:
+        image: getmeili/meilisearch:latest
+        ports:
+        - 7700:7700
+```
+
+On the dashboard homepage in the `host` field insert the service name followed by the port. Example: meilisearch:7700 
 
 <hr>
 
