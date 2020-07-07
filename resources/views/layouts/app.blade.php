@@ -4,12 +4,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ config('app.name') }}</title>
-    <link href="{{ mix('css/main.css') }}" rel="stylesheet">
-    @livewireStyles
+    <link href="{{ mix('css/main.css') }}" rel="stylesheet" data-turbolinks-track="true">
+    <livewire:styles/>
 </head>
 <body>
     @yield('content')
     <script src="{{ mix('js/app.js') }}"></script>
-    @livewireScripts
+    <livewire:scripts/>
 </body>
 </html>
