@@ -1,6 +1,6 @@
 <div x-data="{ focus: false, words: [] }">
     <h3 class="font-semibold underline">Optional words</h3>
-    <p>List of words that should be considered as optional. <a href="#">Learn more</a></p>
+    <p>List of words that should be considered as optional. <a class="underline text-blue-500" href="https://docs.meilisearch.com/guides/advanced_guides/settings.html#stop-words">Learn more</a></p>
     <button wire:click="restore('StopWords')"
             class="mb-2 p-2 bg-primary-500 text-white border shadow rounded hover:bg-primary-300">Reset
     </button>

@@ -2,7 +2,7 @@
     <div>
         <h3 class="font-semibold underline">Accept new fields</h3>
         <p>defines whether new fields should be automatically added to the searchable-attributes and the
-            displayed-attributes. <a href="#">Learn more</a></p>
+            displayed-attributes. <a class="underline text-blue-500" href="https://docs.meilisearch.com/guides/advanced_guides/settings.html#displayed-attributes">Learn more</a></p>
         <p>Default value: true</p>
         <span wire:click="toggleFields" role="checkbox" tabindex="0" aria-checked="false"
               class="group relative inline-flex items-center justify-center flex-shrink-0 h-5 w-10 cursor-pointer focus:outline-none">
@@ -14,7 +14,7 @@
     </div>
     <div class="mt-4">
         <h3 class="font-semibold underline">Displayed attributes</h3>
-        <p>Attributes of the records that will be sent within the answer to a search. <a href="#">Learn more</a></p>
+        <p>Attributes of the records that will be sent within the answer to a search. <a class="underline text-blue-500" href="https://docs.meilisearch.com/guides/advanced_guides/settings.html#displayed-attributes">Learn more</a></p>
         <p>Default value: ['*']</p>
         <button wire:click="restore('DisplayedAttributes')"
                 class="mb-2 p-2 bg-primary-500 text-white border shadow rounded hover:bg-primary-300">Reset
