@@ -67,7 +67,7 @@ NB: you can also download MeiliSearch from **Homebrew** or **APT**.
 docker ps
 ```
 Copy the **CONTAINER ID** of getmeili/meilisearch.
-On the dashboard homepage in the `host` field insert the container id followed by the port. Example: e194fad4790f:8000
+On the dashboard homepage in the `host` field insert the container id followed by the port. Example: e194fad4790f:7700
 
 ## Installation Docker Compose
 
