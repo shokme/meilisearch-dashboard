@@ -1,9 +1,14 @@
+const defaultTheme = require('tailwindcss/defaultTheme')
+
 module.exports = {
   purge: [
     './resources/views/**/*.blade.php',
   ],
   theme: {
     extend: {
+      fontFamily: {
+          sans: ['Raleway', ...defaultTheme.fontFamily.sans]
+      },
       colors: {
         primary: {
           '300': '#53535a',
