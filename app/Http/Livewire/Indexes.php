@@ -14,22 +14,15 @@ class Indexes extends Component
 
     protected $listeners = ['instanceSwitched' => 'render'];
 
-    public function stats()
-    {
-        return Meili::stats()['indexes'];
-    }
-
     public function create()
     {
         $this->validate([
-            'uid' => 'required|min:3',
+            'uid' => 'required',
         ]);
 
-        try {
-            Meili::createIndex($this->uid, ['primaryKey' => $this->pk]);
-        } catch (HTTPRequestException $exception) {
-            // TODO: Flash message index already exists.
-        }
+        Meili::createIndex($this->uid, ['primaryKey' => $this->pk]);
+
+        $this->reset();
     }
 
     public function delete($uid)
@@ -39,12 +32,12 @@ class Indexes extends Component
 
     public function render()
     {
-        $indexes = collect(Meili::getAllIndexes())->map(function ($index) {
-            $stats = Meili::getIndex($index['uid'])->stats();
+        $indexes = collect(Meili::getAllIndexes())->map(function (\MeiliSearch\Endpoints\Indexes $index) {
+            $stats = Meili::getIndex($index->getUid())->stats();
 
-            return array_merge($index, $stats);
+            return array_merge($index->show(), $stats);
         })->all();
 
-        return view('livewire.indexes', ['indexes' => $indexes, 'stats' => $this->stats(), 'sys' => Meili::prettySysInfo()]);
+        return view('livewire.indexes', ['indexes' => $indexes]);
     }
 }

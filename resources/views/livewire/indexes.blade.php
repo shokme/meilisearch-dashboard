@@ -1,14 +1,13 @@
 <div>
-    <div class="my-2 p-2 text-white bg-blue-500 rounded shadow">This page is working in progress</div>
     <livewire:switch-instance/>
-    <div class="mx-w-screen-xl mx-auto py-6 px-8 flex items-center justify-between" x-data="{ open: false }">
+    <div class="mx-auto py-6 flex items-center justify-between" x-data="{ open: false }">
         <h2 class="font-extrabold tracking-tight text-primary-500 text-2xl leading-10">
             Indexes
         </h2>
         <div class="flex lg:flex-shrink-0 mt-0">
             <div class="inline-flex rounded shadow">
                 <button @click="open = true"
-                        class="inline-flex items-center justify-center px-2 py-1 border border-transparent text-base leading-6 font-medium rounded text-white bg-primary-500 hover:bg-gray-800 focus:outline-none focus:shadow-outline transition duration-150 ease-in-out">
+                        class="inline-flex items-center justify-center px-2 py-1 border border-primary-500 text-base leading-6 font-medium rounded text-primary-500 hover:shadow-md focus:outline-none focus:shadow-outline transition duration-150 ease-in-out">
                     Create Index
                 </button>
             </div>
@@ -16,7 +15,7 @@
         <div class="absolute" x-show="open" x-cloak>
             <x-modal-centered-action :label="'Create Index'">
                 <div class="mt-3 relative rounded-md shadow-sm">
-                    <input required wire:keydown.enter="create" @keydown.enter="open = false;" wire:model="uid"
+                    <input wire:keydown.enter="create" @keydown.enter="open = false;" wire:model="uid"
                            class="form-input block w-full sm:text-sm sm:leading-5" placeholder="Index uid to create"/>
                 </div>
                 <div class="mt-3 relative rounded-md shadow-sm">
@@ -38,24 +37,20 @@
         </div>
     </div>
 
-    <div class="flex flex-col px-8">
+    <div class="flex flex-col">
         <div class="overflow-x-auto -mx-2 px-2">
             <div class="align-middle inline-block min-w-full shadow overflow-hidden border-b border-gray-200">
                 <table class="min-w-full">
                     <thead>
                     <tr>
-                        <th class="px-6 py-3 border-b border-gray-200 bg-gray-100 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                            Index
-                        </th>
-                        <th class="px-6 py-3 border-b border-gray-200 bg-gray-100 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                            Records
-                        </th>
+                        <th class="px-6 py-3 border border-r-0 border-gray-200 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Indexes</th>
+                        <th class="px-6 py-3 border border-l-0 border-gray-200 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Records</th>
                     </tr>
                     </thead>
                     <tbody>
                     @foreach($indexes as $index)
-                        <tr class="border-b border-gray-200">
-                            <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 font-medium text-gray-900">
+                        <tr class="border-b border-gray-100">
+                            <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 font-medium text-secondary-900">
                                 <a href="/dashboard/indexes/{{$index['uid']}}"
                                    class="text-blue-500">{{ $index['uid'] }}</a>
                             </td>
@@ -69,66 +64,6 @@
             </div>
         </div>
     </div>
-    <div>
-        <div class="mx-w-screen-xl mx-auto pt-8 px-8 flex items-center justify-between">
-            <h2 class="font-extrabold tracking-tight text-primary-500 text-2xl leading-10">
-                Stats
-            </h2>
-        </div>
-    </div>
-    <div class="flex flex-col px-8">
-        <div class="overflow-x-auto -mx-2 px-2">
-            <div class="align-middle inline-block min-w-full overflow-hidden">
-                <div>
-                    @foreach($stats as $k => $stat)
-                        <h3 class="uppercase text-sm font-bold">{{ $k }}</h3>
-                        <p>Number of documents: {{ $stat['numberOfDocuments'] }}</p>
-                        <p>Is indexing: {{ $stat['isIndexing'] ? 'true' : 'false' }}</p>
-                        @if($stat['fieldsDistribution'])
-                            <table class="mt-2 min-w-full">
-                                <thead>
-                                <tr>
-                                    <th class="px-6 py-3 border-b border-gray-200 bg-gray-100 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                                        Field
-                                    </th>
-                                    <th class="px-6 py-3 border-b border-gray-200 bg-gray-100 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                                        Value
-                                    </th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                @foreach($stat['fieldsDistribution'] as $key => $value)
-                                    <tr class="border-b border-gray-200">
-                                        <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 font-medium text-gray-900">
-                                            {{ $key }}
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500">
-                                            {{ $value }}
-                                        </td>
-                                    </tr>
-                                @endforeach
-                                </tbody>
-                            </table>
-                        @endif
-                    @endforeach
-                </div>
-            </div>
-        </div>
-    </div>
-{{--    <div>--}}
-{{--        <div class="mx-w-screen-xl mx-auto pt-8 px-8 flex items-center justify-between">--}}
-{{--            <h2 class="font-extrabold tracking-tight text-primary-500 text-2xl leading-10">--}}
-{{--                System info--}}
-{{--            </h2>--}}
-{{--        </div>--}}
-{{--    </div>--}}
-{{--    <div class="flex flex-col px-8">--}}
-{{--        <div class="overflow-x-auto -mx-2 px-2">--}}
-{{--            <div class="align-middle inline-block min-w-full overflow-hidden">--}}
-{{--                <div>--}}
-{{--                    @dump($sys)--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--    </div>--}}
+
+    <livewire:sysinfo></livewire:sysinfo>
 </div>
