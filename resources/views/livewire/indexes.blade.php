@@ -45,6 +45,7 @@
                     <tr>
                         <th class="px-6 py-3 border border-r-0 border-gray-200 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Indexes</th>
                         <th class="px-6 py-3 border border-l-0 border-gray-200 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Records</th>
+                        <th class="px-6 py-3 border border-l-0 border-gray-200 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider"></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -56,6 +57,9 @@
                             </td>
                             <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500">
                                 {{ number_format($index['numberOfDocuments'], 0, ',', ' ') }}
+                            </td>
+                            <td>
+                                <button wire:click="delete('{{$index['uid']}}')" class="p-2 text-white font-bold bg-red-500 rounded shadow">Delete index</button>
                             </td>
                         </tr>
                     @endforeach

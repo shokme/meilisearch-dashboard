@@ -6,6 +6,8 @@ use Illuminate\View\Component;
 
 class IndexNav extends Component
 {
+    public $uid;
+
     /**
      * Create a new component instance.
      *
@@ -13,7 +15,7 @@ class IndexNav extends Component
      */
     public function __construct()
     {
-        //
+        $this->uid = request()->route()->parameter('uid');
     }
 
     /**

@@ -24,9 +24,6 @@ trait MeilisearchTrait
 
     private function waitUpdate($id)
     {
-        while($this->index()->getUpdateStatus($id['updateId'])['status'] === 'enqueued') {
-            usleep(100 * 1000);
-            continue;
-        }
+        $this->index()->waitForPendingUpdate($id['updateId'], 3000);
     }
 }
