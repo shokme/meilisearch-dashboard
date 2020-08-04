@@ -1,6 +1,6 @@
 <div>
     <h3 class="font-semibold underline">Attributes for faceting</h3>
-    <p>List of attributes to use for faceting. <a class="underline text-blue-500" href="https://docs.meilisearch.com/guides/advanced_guides/settings.html#attributes-for-faceting">Learn more</a></p>
+    <p>List of attributes to use for faceting. <a class="underline text-blue-500" target="_blank" href="https://docs.meilisearch.com/guides/advanced_guides/settings.html#attributes-for-faceting">Learn more</a></p>
     <p>Default value: []</p>
     <button wire:click="restore('AttributesForFaceting')"
             class="mb-2 p-2 bg-primary-500 text-white border shadow rounded hover:bg-primary-300">Reset

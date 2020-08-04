@@ -1,6 +1,6 @@
 <div x-data="{ open: false }">
     <h3 class="font-semibold underline">Synonyms</h3>
-    <p>A set of words defined for an index. <a class="underline text-blue-500" href="https://docs.meilisearch.com/guides/advanced_guides/settings.html#synonyms">Learn more</a></p>
+    <p>A set of words defined for an index. <a class="underline text-blue-500" target="_blank" href="https://docs.meilisearch.com/guides/advanced_guides/settings.html#synonyms">Learn more</a></p>
     <button wire:click="restore('Synonyms')"
             class="mb-2 p-2 bg-primary-500 text-white border shadow rounded hover:bg-primary-300">Reset
     </button>

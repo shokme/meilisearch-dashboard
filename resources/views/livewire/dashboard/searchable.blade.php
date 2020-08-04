@@ -1,6 +1,6 @@
 <div>
     <h3 class="font-semibold underline">Searchable attributes</h3>
-    <p>The complete list of attributes that will be used for searching. <a class="underline text-blue-500" href="https://docs.meilisearch.com/guides/advanced_guides/settings.html#searchable-attributes">Learn more</a></p>
+    <p>The complete list of attributes that will be used for searching. <a class="underline text-blue-500" target="_blank" href="https://docs.meilisearch.com/guides/advanced_guides/settings.html#searchable-attributes">Learn more</a></p>
     <p>Default value: ['*']</p>
     <button wire:click="restore('SearchableAttributes')"
             class="mb-2 p-2 bg-primary-500 text-white border shadow rounded hover:bg-primary-300">Reset

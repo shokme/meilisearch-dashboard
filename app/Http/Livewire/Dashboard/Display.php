@@ -19,28 +19,26 @@ class Display extends Component
 
     public function update()
     {
-        $attributes = [...$this->get(), $this->attribute];
+        if($this->get()[0] === '*') {
+            $attributes = [$this->attribute];
+        } else {
+            $attributes = [...$this->get(), $this->attribute];
+        }
         $status = $this->index()->updateDisplayedAttributes(array_values($attributes));
         $this->waitUpdate($status);
         $this->reset('attribute');
     }
 
-    public function delete($id)
+    public function delete($attribute)
     {
         $all = $this->get();
-        unset($all[$id]);
+        foreach ($all as $i => $v) {
+            if ($v === $attribute) {
+                unset($all[$i]);
+                break;
+            }
+        }
         $status = $this->index()->updateDisplayedAttributes(array_values($all));
-        $this->waitUpdate($status);
-    }
-
-    public function acceptFields()
-    {
-        return $this->index()->getAcceptNewFields();
-    }
-
-    public function toggleFields()
-    {
-        $status = $this->index()->updateAcceptNewFields(!$this->acceptFields());
         $this->waitUpdate($status);
     }
 
@@ -51,6 +49,6 @@ class Display extends Component
 
     public function render()
     {
-        return view('livewire.dashboard.display', ['attributes' => $this->get(), 'acceptFields' => $this->acceptFields()]);
+        return view('livewire.dashboard.display', ['attributes' => $this->get()]);
     }
 }

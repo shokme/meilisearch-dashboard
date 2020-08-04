@@ -1,20 +1,7 @@
 <div>
-    <div>
-        <h3 class="font-semibold underline">Accept new fields</h3>
-        <p>defines whether new fields should be automatically added to the searchable-attributes and the
-            displayed-attributes. <a class="underline text-blue-500" href="https://docs.meilisearch.com/guides/advanced_guides/settings.html#displayed-attributes">Learn more</a></p>
-        <p>Default value: true</p>
-        <span wire:click="toggleFields" role="checkbox" tabindex="0" aria-checked="false"
-              class="group relative inline-flex items-center justify-center flex-shrink-0 h-5 w-10 cursor-pointer focus:outline-none">
-            <span aria-hidden="true"
-                  class="@if($acceptFields) bg-secondary-500 @else bg-gray-200 @endif absolute h-4 w-9 mx-auto rounded-full transition-colors ease-in-out duration-200"></span>
-            <span aria-hidden="true"
-                  class="@if($acceptFields) translate-x-5 @else translate-x-0 @endif absolute left-0 inline-block h-5 w-5 border border-gray-200 rounded-full bg-white shadow transform group-focus:shadow-outline group-focus:border-blue-300 transition-transform ease-in-out duration-200"></span>
-        </span>
-    </div>
     <div class="mt-4">
         <h3 class="font-semibold underline">Displayed attributes</h3>
-        <p>Attributes of the records that will be sent within the answer to a search. <a class="underline text-blue-500" href="https://docs.meilisearch.com/guides/advanced_guides/settings.html#displayed-attributes">Learn more</a></p>
+        <p>Attributes of the records that will be sent within the answer to a search. <a class="underline text-blue-500" target="_blank" href="https://docs.meilisearch.com/guides/advanced_guides/settings.html#displayed-attributes">Learn more</a></p>
         <p>Default value: ['*']</p>
         <button wire:click="restore('DisplayedAttributes')"
                 class="mb-2 p-2 bg-primary-500 text-white border shadow rounded hover:bg-primary-300">Reset
@@ -51,13 +38,13 @@
                 <div class="align-middle inline-block min-w-full overflow-hidden border-b border-gray-200 rounded">
                     <table class="min-w-full">
                         <tbody>
-                        @foreach($attributes as $i => $attribute)
+                        @foreach($attributes as $attribute)
                             <tr class="border border-gray-200 border-b-0">
                                 <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500">
                                     {{ $attribute }}
                                 </td>
                                 <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-500">
-                                    <button wire:click="delete('{{$i}}')"
+                                    <button wire:click="delete('{{$attribute}}')"
                                             class="ml-1 p-1  bg-gray-50 border border-gray-200 rounded shadow">
                                         <svg class="w-5 text-secondary-500" fill="none" stroke-linecap="round"
                                              stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24"

@@ -20,8 +20,11 @@ class Searchable extends Component
 
     public function add()
     {
-        $list = $this->get();
-        $list = [$this->attribute, ...$list];
+        if($this->get()[0] === '*') {
+            $list = [$this->attribute];
+        } else {
+            $list = [$this->attribute, ...$this->get()];
+        }
 
         $status = $this->index()->updateSearchableAttributes($list);
         $this->reset('attribute');
