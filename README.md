@@ -47,7 +47,7 @@ $ docker network create meilisearch-network
 ```
 
 ```bash
-$ docker run -it --rm -p 8000:80 --network=meilisearch-network shokme/meilisearch-dashboard:alpha
+$ docker run -it --rm -p 8000:80 --network=meilisearch-network shokme/meilisearch-dashboard
 ```
 
 ### Run MeiliSearch
