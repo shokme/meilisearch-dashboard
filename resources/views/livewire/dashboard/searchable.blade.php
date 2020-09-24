@@ -65,7 +65,7 @@
                 <div class="relative rounded-md shadow-sm">
                     <div class="grid grid-cols-1 row-gap-6 col-gap-4 sm:grid-cols-6">
                         <div class="sm:col-span-6">
-                            <input required wire:keydown.enter="add" wire:model="attribute" @keydown.enter="open = false"
+                            <input required wire:keydown.enter="add" wire:model.lazy="attribute" @keydown.enter="open = false"
                                    class="form-input block w-full sm:text-sm sm:leading-5"
                                    placeholder="Attribute"/>
                         </div>
@@ -88,10 +88,9 @@
 </div>
 
 <script>
-    function update(lw, rule) {
+    function update(lw) {
         const children = document.getElementById('list').children;
         let list = [];
-        console.log(rule);
 
         for (let i = 0; i < children.length; i++) {
             let rule = children[i].children[1].innerText
@@ -104,7 +103,6 @@
             list = [...list, rule]
         }
 
-        const component = window.livewire.find(lw.id);
-        component.call('update', list);
+        lw.call('update', list);
     }
 </script>

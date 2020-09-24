@@ -16,7 +16,7 @@
                     <x-modal-centered-action :label="'Create Attribute'">
                         <div class="mt-2">
                             <div class="flex items-center">
-                                <input wire:keydown.enter="update" wire:model="attribute" @keydown.enter="open = false"
+                                <input wire:keydown.enter="update" wire:model.lazy="attribute" @keydown.enter="open = false"
                                        class="mt-1 form-input block w-full sm:text-sm sm:leading-5"
                                        placeholder="add attribute"/>
                             </div>
