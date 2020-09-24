@@ -50,6 +50,8 @@ class Rank extends Component
 
     public function render()
     {
-        return view('livewire.dashboard.rank', ['rules' => $this->get()]);
+        return view('livewire.dashboard.rank', ['rules' => $this->get()])
+            ->extends('layouts.panel')
+            ->section('panel');
     }
 }

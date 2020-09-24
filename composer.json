@@ -11,6 +11,7 @@
         "php": "^7.4",
         "fideloper/proxy": "^4.0",
         "guzzlehttp/guzzle": "^7.0.1",
+        "http-interop/http-factory-guzzle": "^1.0",
         "fruitcake/laravel-cors": "^1.0",
         "laravel/framework": "^8.0",
         "laravel/tinker": "^2.0",

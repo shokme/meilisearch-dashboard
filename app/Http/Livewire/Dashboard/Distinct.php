@@ -29,6 +29,8 @@ class Distinct extends Component
 
     public function render()
     {
-        return view('livewire.dashboard.distinct', ['attribute' => $this->get()]);
+        return view('livewire.dashboard.distinct', ['attribute' => $this->get()])
+            ->extends('layouts.panel')
+            ->section('panel');
     }
 }

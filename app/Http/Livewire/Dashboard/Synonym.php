@@ -64,6 +64,8 @@ class Synonym extends Component
 
     public function render()
     {
-        return view('livewire.dashboard.synonym', ['synonyms' => $this->get()]);
+        return view('livewire.dashboard.synonym', ['synonyms' => $this->get()])
+            ->extends('layouts.panel')
+            ->section('panel');
     }
 }
