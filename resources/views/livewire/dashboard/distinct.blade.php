@@ -4,4 +4,5 @@
     <p>Default value: </p>
     <input wire:keydown.enter="update($event.target.value)"
            class="mt-1 form-input block w-full sm:text-sm sm:leading-5" value="{{ $attribute }}"/>
+    <x-notify-saved></x-notify-saved>
 </div>

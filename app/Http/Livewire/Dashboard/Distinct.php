@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Dashboard;
 
 use App\Support\MeilisearchTrait;
+use Illuminate\Support\Facades\Log;
 use Livewire\Component;
 
 class Distinct extends Component
@@ -20,6 +21,8 @@ class Distinct extends Component
     {
         $status = $this->index()->updateDistinctAttribute($attribute);
         $this->waitUpdate($status);
+
+        $this->emitSelf('notify-saved', 'Successfully updated!');
     }
 
     public function mount($uid)
