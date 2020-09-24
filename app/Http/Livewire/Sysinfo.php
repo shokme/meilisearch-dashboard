@@ -9,6 +9,6 @@ class Sysinfo extends Component
 {
     public function render()
     {
-        return view('livewire.sysinfo', ['sys' => Meili::prettySysInfo()]);
+        return view('livewire.sysinfo', ['sys' => Meili::prettySysInfo()])->extends('layouts.app');
     }
 }

@@ -43,6 +43,8 @@ class Facet extends Component
 
     public function render()
     {
-        return view('livewire.dashboard.facet', ['facets' => $this->get()]);
+        return view('livewire.dashboard.facet', ['facets' => $this->get()])
+            ->extends('layouts.panel')
+            ->section('panel');
     }
 }

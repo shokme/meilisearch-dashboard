@@ -19,6 +19,8 @@ class Stats extends Component
 
     public function render()
     {
-        return view('livewire.dashboard.stats', ['stats' => $this->index()->stats()]);
+        return view('livewire.dashboard.stats', ['stats' => $this->index()->stats()])
+            ->extends('layouts.panel')
+            ->section('panel');
     }
 }

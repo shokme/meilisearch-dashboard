@@ -49,6 +49,8 @@ class Display extends Component
 
     public function render()
     {
-        return view('livewire.dashboard.display', ['attributes' => $this->get()]);
+        return view('livewire.dashboard.display', ['attributes' => $this->get()])
+            ->extends('layouts.panel')
+            ->section('panel');
     }
 }

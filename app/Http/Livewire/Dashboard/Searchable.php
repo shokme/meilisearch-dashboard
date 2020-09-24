@@ -52,6 +52,8 @@ class Searchable extends Component
 
     public function render()
     {
-        return view('livewire.dashboard.searchable', ['attributes' => $this->get()]);
+        return view('livewire.dashboard.searchable', ['attributes' => $this->get()])
+            ->extends('layouts.panel')
+            ->section('panel');
     }
 }

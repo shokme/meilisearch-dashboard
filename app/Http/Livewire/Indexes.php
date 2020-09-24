@@ -38,6 +38,6 @@ class Indexes extends Component
             return array_merge($index->show(), $stats);
         })->all();
 
-        return view('livewire.indexes', ['indexes' => $indexes]);
+        return view('livewire.indexes', ['indexes' => $indexes])->extends('layouts.app');
     }
 }

@@ -38,6 +38,8 @@ class Stopwords extends Component
 
     public function render()
     {
-        return view('livewire.dashboard.stopwords', ['stopwords' => $this->get()]);
+        return view('livewire.dashboard.stopwords', ['stopwords' => $this->get()])
+            ->extends('layouts.panel')
+            ->section('panel');
     }
 }

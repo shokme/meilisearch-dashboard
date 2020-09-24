@@ -21,6 +21,6 @@ class SwitchInstance extends Component
 
     public function render()
     {
-        return view('livewire.switch-instance', ['instances' => $this->get()]);
+        return view('livewire.switch-instance', ['instances' => $this->get()])->extends('layouts.app');
     }
 }
