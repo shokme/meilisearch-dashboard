@@ -23,6 +23,5 @@
         "@tailwindcss/ui": "^0.3.1",
         "alpinejs": "^2.5.0",
         "tailwindcss": "^1.6.2",
-        "turbolinks": "^5.2.0"
     }
 }
