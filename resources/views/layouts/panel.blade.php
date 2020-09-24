@@ -5,7 +5,7 @@
     <div class="mt-8 flex shadow rounded-sm">
         <x-index-nav/>
         <div class="w-2/3 border border-gray-100 border-l-0 px-4 py-4">
-            {{ $slot }}
+            @yield('panel')
         </div>
     </div>
 </div>

@@ -152,10 +152,9 @@
 </div>
 
 <script>
-    function update(lw, rule) {
+    function update(lw) {
         const children = document.getElementById('list').children;
         let list = [];
-        console.log(rule);
 
         for (let i = 0; i < children.length; i++) {
             let rule = children[i].children[1].innerText
@@ -168,7 +167,6 @@
             list = [...list, rule]
         }
 
-        const component = window.livewire.find(lw.id);
-        component.call('update', list);
+        lw.call('update', list);
     }
 </script>

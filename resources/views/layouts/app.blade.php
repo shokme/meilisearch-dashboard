@@ -9,7 +9,7 @@
     <livewire:styles/>
 </head>
 <body>
-    {{ $slot }}
+    @yield('content')
     <script src="{{ mix('js/app.js') }}"></script>
     <livewire:scripts/>
 </body>

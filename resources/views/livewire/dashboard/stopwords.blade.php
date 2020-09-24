@@ -38,7 +38,6 @@
 </div>
 <script>
     function addWord(lw, word) {
-        const component = window.livewire.find(lw.id);
-        component.call('update', word)
+        lw.call('update', word)
     }
 </script>

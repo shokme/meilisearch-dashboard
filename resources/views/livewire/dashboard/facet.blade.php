@@ -42,7 +42,7 @@
         <div class="absolute" x-show="open" x-cloak>
             <x-modal-centered-action :label="'Create Facet'">
                 <div class="relative rounded-md shadow-sm">
-                    <input required wire:model="attribute" wire:keydown.enter="add" @keydown.enter="open = false;"
+                    <input required wire:model.lazy="attribute" wire:keydown.enter="add" @keydown.enter="open = false;"
                            class="mt-1 form-input block w-full sm:text-sm sm:leading-5"
                            placeholder="Add an attribute"/>
                 </div>
