@@ -10,7 +10,7 @@
 </head>
 <body>
     @yield('content')
-    <script src="{{ mix('js/app.js') }}"></script>
     <livewire:scripts/>
+    <script src="{{ mix('js/app.js') }}"></script>
 </body>
 </html>
