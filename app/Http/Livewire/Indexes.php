@@ -4,8 +4,6 @@ namespace App\Http\Livewire;
 
 use App\Support\Facades\Meili;
 use Livewire\Component;
-use MeiliSearch\Client;
-use MeiliSearch\Exceptions\HTTPRequestException;
 
 class Indexes extends Component
 {
