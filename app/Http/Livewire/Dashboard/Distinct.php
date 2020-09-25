@@ -3,7 +3,6 @@
 namespace App\Http\Livewire\Dashboard;
 
 use App\Support\MeilisearchTrait;
-use Illuminate\Support\Facades\Log;
 use Livewire\Component;
 
 class Distinct extends Component

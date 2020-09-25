@@ -25,6 +25,7 @@ class Synonym extends Component
             $synonyms = explode(',', $this->updateSynonyms);
             if(count($synonyms) < 2) {
                 // TODO: validate
+                return;
             }
 
             $data = collect($synonyms)->flatMap(function ($synonym) use ($synonyms) {

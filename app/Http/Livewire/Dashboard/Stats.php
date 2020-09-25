@@ -2,7 +2,6 @@
 
 namespace App\Http\Livewire\Dashboard;
 
-use App\Support\Facades\Meili;
 use App\Support\MeilisearchTrait;
 use Livewire\Component;
 
