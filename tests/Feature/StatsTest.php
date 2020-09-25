@@ -17,13 +17,14 @@ class StatsTest extends TestCase
         parent::setUp();
         Meili::createIndex('foo');
         $index = Meili::getIndex('foo');
-        $index->addDocuments([['id' => 1, 'title' => 'foo']]);
+        $id = $index->addDocuments([['id' => 1, 'title' => 'foo']]);
+        $index->waitForPendingUpdate($id['updateId'], 1000);
     }
 
     /** @test */
     public function can_see_stats()
     {
         Livewire::test(Stats::class, ['uid' => 'foo'])
-            ->assertSee('Number of documents');
+            ->assertSee('Number of documents:');
     }
 }
