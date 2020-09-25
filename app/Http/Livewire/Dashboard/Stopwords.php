@@ -23,10 +23,10 @@ class Stopwords extends Component
         $this->waitUpdate($status);
     }
 
-    public function delete($word)
+    public function delete($id)
     {
         $all = $this->get();
-        unset($all[$word]);
+        unset($all[$id]);
         $status = $this->index()->updateStopWords(array_values($all));
         $this->waitUpdate($status);
     }
