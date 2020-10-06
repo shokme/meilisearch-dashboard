@@ -8,7 +8,7 @@
                 @else
                     <p class="font-medium">Number of documents: <span class="font-light">{{ $stats['numberOfDocuments'] }}</span></p>
                 @endif
-                @if($stats['fieldsDistribution'])
+                @if($distribution)
                     <table class="mt-2 min-w-full">
                         <thead>
                         <tr>
@@ -21,7 +21,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($stats['fieldsDistribution'] as $key => $value)
+                        @foreach($distribution as $key => $value)
                             <tr class="border-b border-gray-200">
                                 <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 font-medium text-gray-900">
                                     {{ $key }}

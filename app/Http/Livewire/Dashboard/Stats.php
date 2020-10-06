@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Dashboard;
 
 use App\Support\MeilisearchTrait;
+use Illuminate\Support\Arr;
 use Livewire\Component;
 
 class Stats extends Component
@@ -18,7 +19,10 @@ class Stats extends Component
 
     public function render()
     {
-        return view('livewire.dashboard.stats', ['stats' => $this->index()->stats()])
+        $stats = $this->index()->stats();
+        $distribution = Arr::sortRecursive($stats['fieldsDistribution']);
+
+        return view('livewire.dashboard.stats', ['stats' => $stats, 'distribution' => $distribution])
             ->extends('layouts.panel')
             ->section('panel');
     }
