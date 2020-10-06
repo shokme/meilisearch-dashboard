@@ -3,14 +3,13 @@
 namespace App\Support;
 
 use App\Support\Facades\Meili;
-use MeiliSearch\Client;
+use Illuminate\Support\Str;
+use MeiliSearch\Endpoints\Indexes;
+use MeiliSearch\Exceptions\TimeOutException;
 
 trait MeilisearchTrait
 {
-    /**
-     * @return Client
-     */
-    private function index()
+    private function index(): Indexes
     {
         return Meili::getIndex($this->index);
     }
@@ -24,6 +23,11 @@ trait MeilisearchTrait
 
     private function waitUpdate($id)
     {
-        $this->index()->waitForPendingUpdate($id['updateId'], 3000);
+        try {
+            $this->index()->waitForPendingUpdate($id['updateId'], 1500);
+        } catch (TimeOutException $exception) {
+            $this->dispatchBrowserEvent('indexing', ['message' => 'Indexing in progress for '.Str::afterLast($this->index, '\\')]);
+            // TODO: find a better way to keep the user inform on progress.
+        }
     }
 }
